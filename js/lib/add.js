@@ -9,7 +9,15 @@ class Add {
   }
 
   get inspect() {
-    return `<${this.left} + ${this.right}>`;
+    return `<${this}>`;
   }
+
+  [Symbol.toPrimitive](hint) {
+    if (hint == "string")
+      return `${this.left} + ${this.right}`;
+    else
+      return +this.left + this.right;
+  }
+
 }
 module.exports = Add;
